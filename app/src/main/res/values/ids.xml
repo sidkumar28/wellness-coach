@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="n_in" type="id" />
+    <item name="m_in" type="id" />
+    <item name="c_in" type="id" />
+    <item name="a_in" type="id" />
+    <item name="w_in" type="id" />
+    <item name="iw_in" type="id" />
+    <item name="e_in" type="id" />
+    <item name="l_in" type="id" />
+    <item name="bf_in" type="id" />
+    <item name="rm_in" type="id" />
+    <item name="vf_in" type="id" />
+    <item name="tf_in" type="id" />
+    <item name="ba_in" type="id" />
+    <item name="wbs_in" type="id" />
+    <item name="add_button" type="id" />
+    <item name="lm_in" type="id" />
+    <item name="am_in" type="id" />
+    <item name="tm_in" type="id" />
+    <item name="sm_in" type="id" />
+    <item name="af_in" type="id" />
+    <item name="bmi_in" type="id" />
+    <item name="lf_in" type="id" />
+</resources>
