@@ -10,6 +10,9 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class Customer_value extends AppCompatActivity {
 
     private static final String TAG = "Customer_value";
@@ -54,8 +57,13 @@ public class Customer_value extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 try {
+                    // Get the current date
+                    SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+                    String currentDate = sdf.format(new Date());
+
                     databasewc myDB = new databasewc(Customer_value.this);
-                    myDB.addCustomer(n_in.getText().toString().trim(),
+                    myDB.addCustomer(
+                            n_in.getText().toString().trim(),
                             Integer.parseInt(m_in.getText().toString().trim()),
                             c_in.getText().toString().trim(),
                             Integer.parseInt(a_in.getText().toString().trim()),
@@ -75,7 +83,8 @@ public class Customer_value extends AppCompatActivity {
                             Integer.parseInt(sm_in.getText().toString().trim()),
                             Integer.parseInt(tm_in.getText().toString().trim()),
                             Integer.parseInt(am_in.getText().toString().trim()),
-                            Integer.parseInt(lm_in.getText().toString().trim())
+                            Integer.parseInt(lm_in.getText().toString().trim()),
+                            currentDate  // Pass the current date
                     );
 
                     // Optional: Show a toast or perform any other action after adding to the database

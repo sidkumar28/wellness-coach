@@ -20,7 +20,7 @@ public class inputpage extends AppCompatActivity {
     private RecyclerView recyclerView;
     private FloatingActionButton add_customer;
     private databasewc myDB;  // make this a member variable
-    private ArrayList<String> cname, cmob, ccity, cage, cw, ciw, cex, cls, cbf, cvf, crm, cbmi, cba, cwbs, ctf, caf, clf, csm, ctm, cam, clm;
+    private ArrayList<String> cdate, cname, cmob, ccity, cage, cw, ciw, cex, cls, cbf, cvf, crm, cbmi, cba, cwbs, ctf, caf, clf, csm, ctm, cam, clm;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
