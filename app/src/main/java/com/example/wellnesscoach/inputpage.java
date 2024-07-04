@@ -20,7 +20,9 @@ public class inputpage extends AppCompatActivity {
     private RecyclerView recyclerView;
     private FloatingActionButton add_customer;
     private databasewc myDB;  // make this a member variable
-    private ArrayList<String> cdate, cname, cmob, ccity, cage, cw, ciw, cex, cls, cbf, cvf, crm, cbmi, cba, cwbs, ctf, caf, clf, csm, ctm, cam, clm;
+    private ArrayList<String> cnum, cdate, cname, cmob, ccity, cage, cw, ciw, cex, cls, cbf, cvf, crm, cbmi, cba, cwbs, ctf, caf, clf, csm, ctm, cam, clm;
+
+    CustomerAdapter customerAdapter;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -44,6 +46,8 @@ public class inputpage extends AppCompatActivity {
 
         // Initialize database and data arrays
         myDB = new databasewc(inputpage.this);
+        cnum = new ArrayList<>();
+        cdate = new ArrayList<>();
         cname = new ArrayList<>();
         cmob = new ArrayList<>();
         ccity = new ArrayList<>();
@@ -66,36 +70,42 @@ public class inputpage extends AppCompatActivity {
         cam = new ArrayList<>();
         clm = new ArrayList<>();
 
-        displayData();  // Call the method to display data
+        storeDataInArrays();  // Call the method to display data
+
+        // Initialize and set the adapter
+        customerAdapter = new CustomerAdapter(inputpage.this, cnum, cdate, cname, cmob);
+        recyclerView.setAdapter(customerAdapter);
     }
 
-    void displayData() {
+    void storeDataInArrays() {
         Cursor cursor = myDB.readAllData();
         if (cursor.getCount() == 0) {
             Toast.makeText(this, "NO DATA", Toast.LENGTH_SHORT).show();
         } else {
             while (cursor.moveToNext()) {
-                cname.add(cursor.getString(0));
-                cmob.add(cursor.getString(1));
-                ccity.add(cursor.getString(2));
-                cage.add(cursor.getString(3));
-                cw.add(cursor.getString(4));
-                ciw.add(cursor.getString(5));
-                cex.add(cursor.getString(6));
-                cls.add(cursor.getString(7));
-                cbf.add(cursor.getString(8));
-                cvf.add(cursor.getString(9));
-                crm.add(cursor.getString(10));
-                cbmi.add(cursor.getString(11));
-                cba.add(cursor.getString(12));
-                cwbs.add(cursor.getString(13));
-                ctf.add(cursor.getString(14));
-                caf.add(cursor.getString(15));
-                clf.add(cursor.getString(16));
-                csm.add(cursor.getString(17));
-                ctm.add(cursor.getString(18));
-                cam.add(cursor.getString(19));
-                clm.add(cursor.getString(20));
+                cnum.add(cursor.getString(0));
+                cdate.add(cursor.getString(1));
+                cname.add(cursor.getString(2));
+                cmob.add(cursor.getString(3));
+                ccity.add(cursor.getString(4));
+                cage.add(cursor.getString(5));
+                cw.add(cursor.getString(6));
+                ciw.add(cursor.getString(7));
+                cex.add(cursor.getString(8));
+                cls.add(cursor.getString(9));
+                cbf.add(cursor.getString(10));
+                cvf.add(cursor.getString(11));
+                crm.add(cursor.getString(12));
+                cbmi.add(cursor.getString(13));
+                cba.add(cursor.getString(14));
+                cwbs.add(cursor.getString(15));
+                ctf.add(cursor.getString(16));
+                caf.add(cursor.getString(17));
+                clf.add(cursor.getString(18));
+                csm.add(cursor.getString(19));
+                ctm.add(cursor.getString(20));
+                cam.add(cursor.getString(21));
+                clm.add(cursor.getString(22));
             }
             // Bind the data to the RecyclerView using an adapter (not shown here)
         }
