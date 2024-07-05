@@ -51,7 +51,7 @@ class databasewc extends SQLiteOpenHelper {
                 COLUMN_NUMBER + " INTEGER PRIMARY KEY AUTOINCREMENT," +
                 COLUMN_DATE + " TEXT," +
                 COLUMN_NAME + " TEXT, " +
-                COLUMN_MOBILE + " INTEGER, " +
+                COLUMN_MOBILE + " TEXT, " + // Changed to TEXT to accommodate 12 digits
                 COLUMN_CITY + " TEXT, " +
                 COLUMN_AGE + " INTEGER, " +
                 COLUMN_WEIGHT + " INTEGER, " +
@@ -80,13 +80,14 @@ class databasewc extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    void addCustomer(String n, int m, String c, int a, int w, int iw, int e, int l, int bf, int vf, int rm, int bmi, int ba, int wbs, int tf, int af, int lf, int sm, int tm, int am, int lm, String d) {
+    void addCustomer(String n, String m, String c, int a, float w, float iw, float e, float l, float bf, float vf, float rm, float bmi,
+                     float ba, float wbs, float tf, float af, float lf, float sm, float tm, float am, float lm, String d) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
 
         cv.put(COLUMN_NAME, n);
         cv.put(COLUMN_DATE, d);
-        cv.put(COLUMN_MOBILE, m);
+        cv.put(COLUMN_MOBILE, m); // Changed to String to accommodate 12 digits
         cv.put(COLUMN_CITY, c);
         cv.put(COLUMN_AGE, a);
         cv.put(COLUMN_WEIGHT, w);
@@ -106,7 +107,6 @@ class databasewc extends SQLiteOpenHelper {
         cv.put(COLUMN_TRUNK_MUSCLE, tm);
         cv.put(COLUMN_ARM_MUSCLE, am);
         cv.put(COLUMN_LEG_MUSCLE, lm);
-
 
         long result = db.insert(TABLE_NAME, null, cv);
         if (result == -1) {

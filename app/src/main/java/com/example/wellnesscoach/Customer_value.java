@@ -1,6 +1,7 @@
 package com.example.wellnesscoach;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -64,31 +65,35 @@ public class Customer_value extends AppCompatActivity {
                     databasewc myDB = new databasewc(Customer_value.this);
                     myDB.addCustomer(
                             n_in.getText().toString().trim(),
-                            Integer.parseInt(m_in.getText().toString().trim()),
+                            m_in.getText().toString().trim(),
                             c_in.getText().toString().trim(),
                             Integer.parseInt(a_in.getText().toString().trim()),
-                            Integer.parseInt(w_in.getText().toString().trim()),
-                            Integer.parseInt(iw_in.getText().toString().trim()),
-                            Integer.parseInt(e_in.getText().toString().trim()),
-                            Integer.parseInt(l_in.getText().toString().trim()),
-                            Integer.parseInt(bf_in.getText().toString().trim()),
-                            Integer.parseInt(vf_in.getText().toString().trim()),
-                            Integer.parseInt(rm_in.getText().toString().trim()),
-                            Integer.parseInt(bmi_in.getText().toString().trim()),
-                            Integer.parseInt(ba_in.getText().toString().trim()),
-                            Integer.parseInt(wbs_in.getText().toString().trim()),
-                            Integer.parseInt(tf_in.getText().toString().trim()),
-                            Integer.parseInt(af_in.getText().toString().trim()),
-                            Integer.parseInt(lf_in.getText().toString().trim()),
-                            Integer.parseInt(sm_in.getText().toString().trim()),
-                            Integer.parseInt(tm_in.getText().toString().trim()),
-                            Integer.parseInt(am_in.getText().toString().trim()),
-                            Integer.parseInt(lm_in.getText().toString().trim()),
+                            Float.parseFloat(w_in.getText().toString().trim()),
+                            Float.parseFloat(iw_in.getText().toString().trim()),
+                            Float.parseFloat(e_in.getText().toString().trim()),
+                            Float.parseFloat(l_in.getText().toString().trim()),
+                            Float.parseFloat(bf_in.getText().toString().trim()),
+                            Float.parseFloat(vf_in.getText().toString().trim()),
+                            Float.parseFloat(rm_in.getText().toString().trim()),
+                            Float.parseFloat(bmi_in.getText().toString().trim()),
+                            Float.parseFloat(ba_in.getText().toString().trim()),
+                            Float.parseFloat(wbs_in.getText().toString().trim()),
+                            Float.parseFloat(tf_in.getText().toString().trim()),
+                            Float.parseFloat(af_in.getText().toString().trim()),
+                            Float.parseFloat(lf_in.getText().toString().trim()),
+                            Float.parseFloat(sm_in.getText().toString().trim()),
+                            Float.parseFloat(tm_in.getText().toString().trim()),
+                            Float.parseFloat(am_in.getText().toString().trim()),
+                            Float.parseFloat(lm_in.getText().toString().trim()),
                             currentDate  // Pass the current date
                     );
 
                     // Optional: Show a toast or perform any other action after adding to the database
                     Toast.makeText(Customer_value.this, "Customer added successfully", Toast.LENGTH_SHORT).show();
+
+                    Intent intent= new Intent(Customer_value.this, Customer_report.class);
+                    startActivity(intent);
+
                 } catch (Exception e) {
                     Log.e(TAG, "Error adding customer: " + e.getMessage());
                     Toast.makeText(Customer_value.this, "Failed to add customer", Toast.LENGTH_SHORT).show();

@@ -29,6 +29,7 @@
                 android:background="@drawable/rounded_edittext_bg"
                 android:hint="Name"
                 android:textColorHint="#333333"
+                android:textColor="#FF1A1A1E"
                 android:inputType="text"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -44,7 +45,7 @@
                 android:background="@drawable/rounded_edittext_bg"
                 android:hint="Phone"
                 android:textColorHint="#333333"
-
+                android:textColor="#FF1A1A1E"
                 android:inputType="phone"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -60,7 +61,7 @@
                 android:background="@drawable/rounded_edittext_bg"
                 android:hint="City"
                 android:textColorHint="#333333"
-
+                android:textColor="#FF1A1A1E"
                 android:inputType="text"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -76,7 +77,7 @@
                 android:background="@drawable/rounded_edittext_bg"
                 android:hint="Age"
                 android:textColorHint="#333333"
-
+                android:textColor="#FF1A1A1E"
                 android:inputType="number"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -92,7 +93,7 @@
                 android:background="@drawable/rounded_edittext_bg"
                 android:hint="Weight"
                 android:textColorHint="#333333"
-
+                android:textColor="#FF1A1A1E"
                 android:inputType="numberDecimal"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -108,7 +109,7 @@
                 android:background="@drawable/rounded_edittext_bg"
                 android:hint=" Ideal Weight"
                 android:textColorHint="#333333"
-
+                android:textColor="#FF1A1A1E"
                 android:inputType="numberDecimal"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -124,7 +125,7 @@
                 android:background="@drawable/rounded_edittext_bg"
                 android:hint="Extra"
                 android:textColorHint="#333333"
-
+                android:textColor="#FF1A1A1E"
                 android:inputType="numberDecimal"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -140,7 +141,7 @@
                 android:background="@drawable/rounded_edittext_bg"
                 android:hint="Less"
                 android:textColorHint="#333333"
-
+                android:textColor="#FF1A1A1E"
                 android:inputType="numberDecimal"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -156,7 +157,7 @@
                 android:background="@drawable/rounded_edittext_bg"
                 android:hint="Body Fat"
                 android:textColorHint="#333333"
-
+                android:textColor="#FF1A1A1E"
                 android:inputType="numberDecimal"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -172,7 +173,7 @@
                 android:background="@drawable/rounded_edittext_bg"
                 android:hint="Visceral Fat"
                 android:textColorHint="#333333"
-
+                android:textColor="#FF1A1A1E"
                 android:inputType="numberDecimal"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -188,7 +189,7 @@
                 android:background="@drawable/rounded_edittext_bg"
                 android:hint="Resting Metabolish"
                 android:textColorHint="#333333"
-
+                android:textColor="#FF1A1A1E"
                 android:inputType="numberDecimal"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -204,7 +205,7 @@
                 android:background="@drawable/rounded_edittext_bg"
                 android:hint="BMI"
                 android:textColorHint="#333333"
-
+                android:textColor="#FF1A1A1E"
                 android:inputType="numberDecimal"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -220,7 +221,7 @@
                 android:background="@drawable/rounded_edittext_bg"
                 android:hint="Body Age"
                 android:textColorHint="#333333"
-
+                android:textColor="#FF1A1A1E"
                 android:inputType="numberDecimal"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -236,7 +237,7 @@
                 android:background="@drawable/rounded_edittext_bg"
                 android:hint="Whole Body Subcutaneous"
                 android:textColorHint="#333333"
-
+                android:textColor="#FF1A1A1E"
                 android:inputType="numberDecimal"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -252,7 +253,7 @@
                 android:background="@drawable/rounded_edittext_bg"
                 android:hint="Trunk Fat"
                 android:textColorHint="#333333"
-
+                android:textColor="#FF1A1A1E"
                 android:inputType="numberDecimal"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -268,7 +269,7 @@
                 android:background="@drawable/rounded_edittext_bg"
                 android:hint="Arm Fat"
                 android:textColorHint="#333333"
-
+                android:textColor="#FF1A1A1E"
                 android:inputType="numberDecimal"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -284,7 +285,7 @@
                 android:background="@drawable/rounded_edittext_bg"
                 android:hint="Leg Fat"
                 android:textColorHint="#333333"
-
+                android:textColor="#FF1A1A1E"
                 android:inputType="numberDecimal"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -300,7 +301,7 @@
                 android:background="@drawable/rounded_edittext_bg"
                 android:hint="Skeletal Muscle"
                 android:textColorHint="#333333"
-
+                android:textColor="#FF1A1A1E"
                 android:inputType="numberDecimal"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -316,7 +317,7 @@
                 android:background="@drawable/rounded_edittext_bg"
                 android:hint="Trunk Muscle"
                 android:textColorHint="#333333"
-
+                android:textColor="#FF1A1A1E"
                 android:inputType="numberDecimal"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -332,7 +333,7 @@
                 android:background="@drawable/rounded_edittext_bg"
                 android:hint="Arm Muscle"
                 android:textColorHint="#333333"
-
+                android:textColor="#FF1A1A1E"
                 android:inputType="numberDecimal"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -348,7 +349,7 @@
                 android:background="@drawable/rounded_edittext_bg"
                 android:hint="Leg Muscle"
                 android:textColorHint="#333333"
-
+                android:textColor="#FF1A1A1E"
                 android:inputType="numberDecimal"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
