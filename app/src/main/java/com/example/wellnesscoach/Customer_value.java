@@ -62,9 +62,12 @@ public class Customer_value extends AppCompatActivity {
                     SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
                     String currentDate = sdf.format(new Date());
 
+                    // Get the name entered in the input
+                    String name = n_in.getText().toString().trim();
+
                     databasewc myDB = new databasewc(Customer_value.this);
                     myDB.addCustomer(
-                            n_in.getText().toString().trim(),
+                            name,
                             m_in.getText().toString().trim(),
                             c_in.getText().toString().trim(),
                             Integer.parseInt(a_in.getText().toString().trim()),
@@ -88,10 +91,9 @@ public class Customer_value extends AppCompatActivity {
                             currentDate  // Pass the current date
                     );
 
-                    // Optional: Show a toast or perform any other action after adding to the database
-                    Toast.makeText(Customer_value.this, "Customer added successfully", Toast.LENGTH_SHORT).show();
-
-                    Intent intent= new Intent(Customer_value.this, Customer_report.class);
+                    // Create an Intent to navigate to Customer_report and pass the name
+                    Intent intent = new Intent(Customer_value.this, Customer_report.class);
+                    intent.putExtra("EXTRA_NAME", name);  // Pass the name as an extra
                     startActivity(intent);
 
                 } catch (Exception e) {

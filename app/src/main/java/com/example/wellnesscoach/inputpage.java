@@ -73,7 +73,7 @@ public class inputpage extends AppCompatActivity {
         storeDataInArrays();  // Call the method to display data
 
         // Initialize and set the adapter
-        customerAdapter = new CustomerAdapter(inputpage.this, cnum, cdate, cname, cmob);
+        customerAdapter = new CustomerAdapter(inputpage.this, cnum, cdate, cname, cmob,ccity, cage, cw, ciw, cex, cls, cbf, cvf, crm, cbmi, cba, cwbs, ctf, caf, clf, csm, ctm, cam, clm);
         recyclerView.setAdapter(customerAdapter);
     }
 
