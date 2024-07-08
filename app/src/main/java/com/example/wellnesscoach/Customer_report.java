@@ -1,10 +1,10 @@
 package com.example.wellnesscoach;
 
+import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
-import android.graphics.Paint;
 import android.graphics.pdf.PdfDocument;
 import android.net.Uri;
 import android.os.Bundle;
@@ -61,7 +61,7 @@ public class Customer_report extends AppCompatActivity {
 
         myDB = new databasewc(Customer_report.this);
 
-        // Get the name passed from Customer_value
+        // Get the name passed from Updatedata
         String name = getIntent().getStringExtra("EXTRA_NAME");
         if (name != null) {
             fetchAndDisplayData(name);
@@ -76,6 +76,7 @@ public class Customer_report extends AppCompatActivity {
         });
     }
 
+    @SuppressLint("Range")
     private void fetchAndDisplayData(String name) {
         Cursor cursor = myDB.readDataByName(name);
         if (cursor != null && cursor.moveToFirst()) {
@@ -108,11 +109,23 @@ public class Customer_report extends AppCompatActivity {
     }
 
     private void captureAndSavePdfAndImage() {
+        // Hide the savePdfButton
+        savePdfButton.setVisibility(View.INVISIBLE);
+
         // Capture the activity content as a bitmap
         View contentView = findViewById(R.id.main); // Correct layout ID
         contentView.setDrawingCacheEnabled(true);
         Bitmap bitmap = Bitmap.createBitmap(contentView.getDrawingCache());
         contentView.setDrawingCacheEnabled(false);
+
+        // Show the savePdfButton
+        savePdfButton.setVisibility(View.VISIBLE);
+
+        // Create the WellnessCoach directory if it doesn't exist
+        File wellnessCoachDir = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS), "WellnessCoach");
+        if (!wellnessCoachDir.exists()) {
+            wellnessCoachDir.mkdirs();
+        }
 
         // Create a new PdfDocument
         PdfDocument pdfDocument = new PdfDocument();
@@ -125,13 +138,13 @@ public class Customer_report extends AppCompatActivity {
 
         pdfDocument.finishPage(page);
 
-        // Save the PDF to a file
-        File pdfFile = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS), "CustomerReport.pdf");
+        // Save the PDF to the WellnessCoach folder
+        File pdfFile = new File(wellnessCoachDir, "CustomerReport_" + Calendar.getInstance().getTimeInMillis() + ".pdf");
         try {
             pdfDocument.writeTo(new FileOutputStream(pdfFile));
             pdfDocument.close();
             // Notify the user
-            Toast.makeText(this, "PDF saved to " + pdfFile.getAbsolutePath(), Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "PDF saved" , Toast.LENGTH_LONG).show();
             // Save the image to the gallery
             saveImageToGallery(bitmap);
         } catch (IOException e) {

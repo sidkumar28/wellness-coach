@@ -6,6 +6,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -17,7 +18,7 @@ public class Updatedata extends AppCompatActivity {
     EditText name_input, phone_input, city_input, age_input, weight_input, iweight_input, extra_input, less_input, bodyfat_input,
             visceral_fat_input, rest_metabolism_input, bmi_input, body_age_input, wbs_input, trunk_f_input, arm_f_input, leg_f_input,
             skeletal_muscle_input, trunk_m_input, arm_m_input, leg_m_input;
-    Button update_button, deletebtn;
+    Button update_button, deletebtn, downloadbtn;
 
     String n, m, c, a, w, iw, e, l, bf, vf, rm, bmi, ba, wbs, tf, af, lf, sm, tm, am, lm, d;
 
@@ -58,6 +59,8 @@ public class Updatedata extends AppCompatActivity {
 
         update_button = findViewById(R.id.updatebut);
         deletebtn = findViewById(R.id.deletebtn);
+        downloadbtn = findViewById(R.id.downloadbtn); // Initialize download button
+
         update_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -101,6 +104,16 @@ public class Updatedata extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 confirmDialog(); // Call the confirmDialog() method to show the confirmation dialog
+            }
+        });
+
+        // Add click listener for download button
+        downloadbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Updatedata.this, Customer_report.class);
+                intent.putExtra("EXTRA_NAME", n);
+                startActivity(intent);
             }
         });
     }
@@ -175,28 +188,25 @@ public class Updatedata extends AppCompatActivity {
             trunk_m_input.setText(tm);
             arm_m_input.setText(am);
             leg_m_input.setText(lm);
-        } else {
-            Toast.makeText(this, "No data", Toast.LENGTH_SHORT).show();
         }
     }
 
-    void confirmDialog(){
+    void confirmDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Delete " + n + "?"); // Corrected title to show the name
-        builder.setMessage("Are you sure?");
-        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+        builder.setTitle("Delete " + n + " ?");
+        builder.setMessage("Are you sure you want to delete " + n + " ?");
+        builder.setPositiveButton("Delete", new DialogInterface.OnClickListener() {
             @Override
-            public void onClick(DialogInterface dialog, int which) {
+            public void onClick(DialogInterface dialogInterface, int i) {
                 databasewc myDb = new databasewc(Updatedata.this);
                 myDb.deleteOneRow(m);
-
-                finish(); // Close the activity after deletion
+                finish(); // Close activity after deletion
             }
         });
-        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
             @Override
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.dismiss(); // Dismiss the dialog
+            public void onClick(DialogInterface dialogInterface, int i) {
+                // Do nothing
             }
         });
         builder.create().show();

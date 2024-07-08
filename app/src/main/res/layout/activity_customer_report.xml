@@ -36,12 +36,13 @@
         android:id="@+id/mobileView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="156dp"
         android:layout_marginTop="12dp"
+        android:layout_marginEnd="100dp"
         android:text="98564282"
         android:textColor="#000000"
+
         android:textSize="12sp"
-        app:layout_constraintStart_toEndOf="@+id/nameView"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/image_report" />
 
     <TextView
@@ -59,20 +60,20 @@
         android:id="@+id/ageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="88dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="28dp"
+        android:layout_marginEnd="232dp"
         android:text="23"
         android:textColor="#000000"
         android:textSize="12sp"
-        app:layout_constraintStart_toEndOf="@+id/cityView"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/image_report" />
 
     <TextView
         android:id="@+id/weightView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="80dp"
-        android:layout_marginTop="18dp"
+        android:layout_marginStart="72dp"
+        android:layout_marginTop="16dp"
         android:text="23"
         android:textColor="#000000"
         android:textSize="12sp"
@@ -83,49 +84,50 @@
         android:id="@+id/idealwView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="104dp"
+        android:layout_marginStart="196dp"
         android:layout_marginTop="20dp"
         android:text="23"
         android:textColor="#000000"
         android:textSize="12sp"
-        app:layout_constraintStart_toEndOf="@+id/weightView"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ageView" />
 
     <TextView
         android:id="@+id/extraView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="68dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginStart="280dp"
+        android:layout_marginTop="64dp"
         android:text="23"
+
         android:textColor="#000000"
         android:textSize="12sp"
-        app:layout_constraintStart_toEndOf="@+id/idealwView"
-        app:layout_constraintTop_toBottomOf="@+id/mobileView" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/image_report" />
 
     <TextView
         android:id="@+id/lessView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="56dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="64dp"
+        android:layout_marginEnd="60dp"
         android:text="23"
         android:textColor="#000000"
         android:textSize="12sp"
-        app:layout_constraintStart_toEndOf="@+id/extraView"
-        app:layout_constraintTop_toBottomOf="@+id/mobileView" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/image_report" />
 
     <TextView
         android:id="@+id/bodyfatView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="100dp"
-        android:layout_marginTop="52dp"
+        android:layout_marginTop="136dp"
         android:text="23"
         android:textColor="#000000"
         android:textSize="10sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/weightView" />
+        app:layout_constraintTop_toTopOf="@+id/image_report" />
 
     <TextView
         android:id="@+id/viserialView"
@@ -143,37 +145,37 @@
         android:id="@+id/restView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="176dp"
-        android:layout_marginTop="6dp"
+        android:layout_marginStart="184dp"
+        android:layout_marginTop="204dp"
         android:text="23"
         android:textColor="#000000"
         android:textSize="10sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/viserialView" />
+        app:layout_constraintTop_toTopOf="@+id/image_report" />
 
     <TextView
         android:id="@+id/bmiView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="100dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="248dp"
         android:text="23"
         android:textColor="#000000"
         android:textSize="10sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/restView" />
+        app:layout_constraintTop_toTopOf="@+id/image_report" />
 
     <TextView
         android:id="@+id/bodyageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="100dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="272dp"
         android:text="23"
         android:textColor="#000000"
         android:textSize="12sp"
         app:layout_constraintStart_toStartOf="@+id/image_report"
-        app:layout_constraintTop_toBottomOf="@+id/bmiView" />
+        app:layout_constraintTop_toTopOf="@+id/image_report" />
 
     <TextView
         android:id="@+id/wbsView"
