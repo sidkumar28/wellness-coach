@@ -1,13 +1,18 @@
 package com.example.wellnesscoach;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -28,6 +33,7 @@ public class inputpage extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_inputpage);
+
 
         // Initialize RecyclerView
         recyclerView = findViewById(R.id.recycleview);
@@ -73,10 +79,17 @@ public class inputpage extends AppCompatActivity {
         storeDataInArrays();  // Call the method to display data
 
         // Initialize and set the adapter
-        customerAdapter = new CustomerAdapter(inputpage.this, cnum, cdate, cname, cmob,ccity, cage, cw, ciw, cex, cls, cbf, cvf, crm, cbmi, cba, cwbs, ctf, caf, clf, csm, ctm, cam, clm);
+        customerAdapter = new CustomerAdapter(inputpage.this,this, cnum, cdate, cname, cmob,ccity, cage, cw, ciw, cex, cls, cbf, cvf, crm, cbmi, cba, cwbs, ctf, caf, clf, csm, ctm, cam, clm);
         recyclerView.setAdapter(customerAdapter);
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data){
+        super.onActivityResult(requestCode,resultCode,data);
+        if(requestCode==1){
+            recreate();
+        }
+    }
     void storeDataInArrays() {
         Cursor cursor = myDB.readAllData();
         if (cursor.getCount() == 0) {
@@ -109,5 +122,44 @@ public class inputpage extends AppCompatActivity {
             }
             // Bind the data to the RecyclerView using an adapter (not shown here)
         }
+
+    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.my_menu, menu);
+        return true;
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item){
+        if (item.getItemId() == R.id.delete_all){
+            confirmDialog();
+
+        }
+        return super.onOptionsItemSelected(item);
+    }
+    void confirmDialog(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Delete all?"); // Corrected title to show the name
+        builder.setMessage("Are you sure?");
+        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                databasewc myDB = new databasewc(inputpage.this);
+                myDB.deleteAllData();
+
+                // Restart the activity to refresh the data
+                Intent intent = new Intent(inputpage.this, inputpage.class);
+                startActivity(intent);
+                finish(); // Close the activity after deletion
+            }
+        });
+        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss(); // Dismiss the dialog
+            }
+        });
+        builder.create().show();
     }
 }

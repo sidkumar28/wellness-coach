@@ -7,27 +7,27 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.DialogInterface;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
 public class Updatedata extends AppCompatActivity {
 
     EditText name_input, phone_input, city_input, age_input, weight_input, iweight_input, extra_input, less_input, bodyfat_input,
             visceral_fat_input, rest_metabolism_input, bmi_input, body_age_input, wbs_input, trunk_f_input, arm_f_input, leg_f_input,
             skeletal_muscle_input, trunk_m_input, arm_m_input, leg_m_input;
-    Button update_button, download_button;
+    Button update_button, deletebtn;
 
     String n, m, c, a, w, iw, e, l, bf, vf, rm, bmi, ba, wbs, tf, af, lf, sm, tm, am, lm, d;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_updatedata);
 
-
-            // Initialize EditText fields
+        // Initialize EditText fields
         name_input = findViewById(R.id.editTextText2);
         phone_input = findViewById(R.id.editTextPhone2);
         city_input = findViewById(R.id.editTextText222);
@@ -50,44 +50,86 @@ public class Updatedata extends AppCompatActivity {
         arm_m_input = findViewById(R.id.editTextDecimal152);
         leg_m_input = findViewById(R.id.editTextDecimal162);
 
-        update_button= findViewById(R.id.updatebut);
+        getAndSetIntentData();
+        ActionBar ab = getSupportActionBar();
+        if (ab != null) {
+            ab.setTitle(n);
+        }
+
+        update_button = findViewById(R.id.updatebut);
+        deletebtn = findViewById(R.id.deletebtn);
         update_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                // Collect data from EditText fields
+                n = name_input.getText().toString();
+                m = phone_input.getText().toString();
+                c = city_input.getText().toString();
+                a = age_input.getText().toString();
+                w = weight_input.getText().toString();
+                iw = iweight_input.getText().toString();
+                e = extra_input.getText().toString();
+                l = less_input.getText().toString();
+                bf = bodyfat_input.getText().toString();
+                vf = visceral_fat_input.getText().toString();
+                rm = rest_metabolism_input.getText().toString();
+                bmi = bmi_input.getText().toString();
+                ba = body_age_input.getText().toString();
+                wbs = wbs_input.getText().toString();
+                tf = trunk_f_input.getText().toString();
+                af = arm_f_input.getText().toString();
+                lf = leg_f_input.getText().toString();
+                sm = skeletal_muscle_input.getText().toString();
+                tm = trunk_m_input.getText().toString();
+                am = arm_m_input.getText().toString();
+                lm = leg_m_input.getText().toString();
+                d = getIntent().getStringExtra("date");
 
+                // Validate data
+                if (n.isEmpty() || m.isEmpty() || c.isEmpty() || a.isEmpty() || w.isEmpty() || iw.isEmpty() || e.isEmpty() || l.isEmpty() ||
+                        bf.isEmpty() || vf.isEmpty() || rm.isEmpty() || bmi.isEmpty() || ba.isEmpty() || wbs.isEmpty() || tf.isEmpty() ||
+                        af.isEmpty() || lf.isEmpty() || sm.isEmpty() || tm.isEmpty() || am.isEmpty() || lm.isEmpty() || d.isEmpty()) {
+                    Toast.makeText(Updatedata.this, "Please fill all fields", Toast.LENGTH_SHORT).show();
+                } else {
+                    databasewc myDb = new databasewc(Updatedata.this);
+                    myDb.updatedata(m, n, c, a, w, iw, e, l, bf, vf, rm, bmi, ba, wbs, tf, af, lf, sm, tm, am, lm, d);
+                }
             }
         });
 
-        getAndSetIntentData();
-
-
+        deletebtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                confirmDialog(); // Call the confirmDialog() method to show the confirmation dialog
+            }
+        });
     }
+
     void getAndSetIntentData() {
-        if (
-                getIntent().hasExtra("num") &&
-                        getIntent().hasExtra("date") &&
-                        getIntent().hasExtra("name") &&
-                        getIntent().hasExtra("mobile") &&
-                        getIntent().hasExtra("city") &&
-                        getIntent().hasExtra("age") &&
-                        getIntent().hasExtra("weight") &&
-                        getIntent().hasExtra("iweight") &&
-                        getIntent().hasExtra("extra") &&
-                        getIntent().hasExtra("less") &&
-                        getIntent().hasExtra("bodyfat") &&
-                        getIntent().hasExtra("visceralfat") &&
-                        getIntent().hasExtra("restmeta") &&
-                        getIntent().hasExtra("bmi") &&
-                        getIntent().hasExtra("bodyage") &&
-                        getIntent().hasExtra("wholebodysub") &&
-                        getIntent().hasExtra("trunkfat") &&
-                        getIntent().hasExtra("armfat") &&
-                        getIntent().hasExtra("legfat") &&
-                        getIntent().hasExtra("skelmus") &&
-                        getIntent().hasExtra("trunkmus") &&
-                        getIntent().hasExtra("armmus") &&
-                        getIntent().hasExtra("legmus")
-        ) {
+        if (getIntent().hasExtra("num") &&
+                getIntent().hasExtra("date") &&
+                getIntent().hasExtra("name") &&
+                getIntent().hasExtra("mobile") &&
+                getIntent().hasExtra("city") &&
+                getIntent().hasExtra("age") &&
+                getIntent().hasExtra("weight") &&
+                getIntent().hasExtra("iweight") &&
+                getIntent().hasExtra("extra") &&
+                getIntent().hasExtra("less") &&
+                getIntent().hasExtra("bodyfat") &&
+                getIntent().hasExtra("visceralfat") &&
+                getIntent().hasExtra("restmeta") &&
+                getIntent().hasExtra("bmi") &&
+                getIntent().hasExtra("bodyage") &&
+                getIntent().hasExtra("wholebodysub") &&
+                getIntent().hasExtra("trunkfat") &&
+                getIntent().hasExtra("armfat") &&
+                getIntent().hasExtra("legfat") &&
+                getIntent().hasExtra("skelmus") &&
+                getIntent().hasExtra("trunkmus") &&
+                getIntent().hasExtra("armmus") &&
+                getIntent().hasExtra("legmus")) {
+
             n = getIntent().getStringExtra("name");
             m = getIntent().getStringExtra("mobile");
             c = getIntent().getStringExtra("city");
@@ -109,6 +151,7 @@ public class Updatedata extends AppCompatActivity {
             tm = getIntent().getStringExtra("trunkmus");
             am = getIntent().getStringExtra("armmus");
             lm = getIntent().getStringExtra("legmus");
+            d = getIntent().getStringExtra("date");
 
             // Set the data to EditText fields
             name_input.setText(n);
@@ -137,4 +180,25 @@ public class Updatedata extends AppCompatActivity {
         }
     }
 
+    void confirmDialog(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Delete " + n + "?"); // Corrected title to show the name
+        builder.setMessage("Are you sure?");
+        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                databasewc myDb = new databasewc(Updatedata.this);
+                myDb.deleteOneRow(m);
+
+                finish(); // Close the activity after deletion
+            }
+        });
+        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss(); // Dismiss the dialog
+            }
+        });
+        builder.create().show();
+    }
 }

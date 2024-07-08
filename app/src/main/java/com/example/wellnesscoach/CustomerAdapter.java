@@ -25,7 +25,8 @@ public class CustomerAdapter extends RecyclerView.Adapter<CustomerAdapter.MyView
             customer_skelmuscle,customer_trunkmus,customer_armmus,customer_legmus;
 
 
-    CustomerAdapter(Context context,
+    CustomerAdapter(Activity activity,
+                    Context context,
                     ArrayList customer_snum,
                     ArrayList customer_date,
                     ArrayList customer_name,
@@ -50,6 +51,7 @@ public class CustomerAdapter extends RecyclerView.Adapter<CustomerAdapter.MyView
                     ArrayList customer_armmus,
                     ArrayList customer_legmus
                     ){
+        this.activity=activity;
         this.context=context;
         this.customer_snum= customer_snum;
         this.customer_date=customer_date;
@@ -120,7 +122,7 @@ public class CustomerAdapter extends RecyclerView.Adapter<CustomerAdapter.MyView
                 intent.putExtra("trunkmus", String.valueOf(customer_trunkmus.get(position)));
                 intent.putExtra("armmus", String.valueOf(customer_armmus.get(position)));
                 intent.putExtra("legmus", String.valueOf(customer_legmus.get(position)));
-                context.startActivity(intent);
+                activity.startActivityForResult(intent,1);
             }
         });
     }

@@ -8,6 +8,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
+import androidx.core.database.sqlite.SQLiteDatabaseKt;
 
 class databasewc extends SQLiteOpenHelper {
 
@@ -39,7 +40,7 @@ class databasewc extends SQLiteOpenHelper {
     private static final String COLUMN_ARM_MUSCLE = "arm_muscle";
     private static final String COLUMN_LEG_MUSCLE = "leg_muscle";
 
-    public databasewc(@Nullable Context context) {
+    databasewc(@Nullable Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
         this.context = context;
     }
@@ -126,4 +127,58 @@ class databasewc extends SQLiteOpenHelper {
         }
         return cursor;
     }
+
+    void updatedata(String m, String n, String c, String a, String w, String iw, String e, String l, String bf, String vf, String rm, String bmi, String ba, String wbs, String tf, String af, String lf, String sm, String tm, String am, String lm, String d) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+        cv.put(COLUMN_NAME, n);
+        cv.put(COLUMN_DATE, d);
+        cv.put(COLUMN_MOBILE, m); // Changed to String to accommodate 12 digits
+        cv.put(COLUMN_CITY, c);
+        cv.put(COLUMN_AGE, a);
+        cv.put(COLUMN_WEIGHT, w);
+        cv.put(COLUMN_IDEAL_WEIGHT, iw);
+        cv.put(COLUMN_EXTRA, e);
+        cv.put(COLUMN_LESS, l);
+        cv.put(COLUMN_BODY_FAT, bf);
+        cv.put(COLUMN_VISCERAL_FAT, vf);
+        cv.put(COLUMN_RESTING_METABOLISM, rm);
+        cv.put(COLUMN_BMI, bmi);
+        cv.put(COLUMN_BODY_AGE, ba);
+        cv.put(COLUMN_WHOLE_BODY_SUB, wbs);
+        cv.put(COLUMN_TRUNK_FAT, tf);
+        cv.put(COLUMN_ARM_FAT, af);
+        cv.put(COLUMN_LEG_FAT, lf);
+        cv.put(COLUMN_SKELETAL_MUSCLE, sm);
+        cv.put(COLUMN_TRUNK_MUSCLE, tm);
+        cv.put(COLUMN_ARM_MUSCLE, am);
+        cv.put(COLUMN_LEG_MUSCLE, lm);
+
+        long result = db.update(TABLE_NAME, cv, COLUMN_MOBILE + "=?", new String[]{m});
+        if (result == -1) {
+            Toast.makeText(context, "Failed to update", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(context, "Successfully updated", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    void deleteOneRow(String m) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        long result = db.delete(TABLE_NAME, COLUMN_MOBILE + "=?", new String[]{m});
+        if (result == -1) {
+            Toast.makeText(context, "Failed to delete", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(context, "Successfully deleted", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    void deleteAllData() {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.execSQL("DELETE FROM " + TABLE_NAME);
+    }
+    public Cursor readDataByName(String name) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        return db.rawQuery("SELECT * FROM " + TABLE_NAME + " WHERE " + COLUMN_NAME + "=?", new String[]{name});
+    }
+
 }
